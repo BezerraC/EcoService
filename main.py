@@ -33,7 +33,7 @@ class Dropdown(discord.ui.Select):
             await interaction.response.send_message("Click below to create a ticket",ephemeral=True,view=CreateTicket())
             
         elif self.values[0] == "suggest":
-            await interaction.response.send_message(f"To send a suggestion, use the chat <#{id_suggestion}>, using the command `/suggestion` ",ephemeral=True)
+            await interaction.response.send_message(f"To send a suggestion, use the command `/suggestion` ",ephemeral=True)
             
         elif self.values[0] == "bug":
             await interaction.response.send_message("To report a bug for one of our projects, follow these instructions:\n\nSend as much detail about it as possible (including description and photos).\n\nHaving this in hand, create a ticket below and send it.",ephemeral=True,view=CreateTicket())
