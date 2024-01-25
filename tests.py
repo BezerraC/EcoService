@@ -14,16 +14,16 @@ class TestDropdown(unittest.TestCase):
         interaction = Mock(spec=discord.Interaction)
         dropdown = Dropdown()
 
-        # Simula a seleção de 'ticket' no dropdown
+        # Simulates 'ticket' selection in dropdown
         await dropdown.callback(interaction)
         interaction.response.send_message.assert_called_once_with("Click below to create a ticket", ephemeral=True, view=CreateTicket())
-        
+
     async def test_callback_suggest(self):
         interaction = Mock(spec=discord.Interaction)
         dropdown = Dropdown()
         dropdown.values = ["suggest"]
 
-        # Simula a seleção de 'suggest' no dropdown
+        # Simulates the selection of 'suggest' in the dropdown
         await dropdown.callback(interaction)
         interaction.response.send_message.assert_called_once_with("To send a suggestion, use the command `/suggestion` ", ephemeral=True)
 
@@ -32,7 +32,7 @@ class TestDropdown(unittest.TestCase):
         dropdown = Dropdown()
         dropdown.values = ["bug"]
 
-        # Simula a seleção de 'bug' no dropdown
+        # Simulates 'bug' selection in dropdown
         await dropdown.callback(interaction)
         interaction.response.send_message.assert_called_once_with("To report a bug for one of our projects, follow these instructions:\n\nSend as much detail about it as possible (including description and photos).\n\nHaving this in hand, create a ticket below and send it.", ephemeral=True, view=CreateTicket())
 
@@ -41,10 +41,9 @@ class TestDropdown(unittest.TestCase):
         dropdown = Dropdown()
         dropdown.values = ["sponsor"]
 
-        # Simula a seleção de 'sponsor' no dropdown
+        # Simulates 'sponsor' selection in the dropdown
         await dropdown.callback(interaction)
         interaction.response.send_message.assert_called_once_with("If you want to sponsor the eco community, you can make it with 2 ways.\n\n1 - Boosting the our server\n\n2 - Be a patrono [here](https://www.patreon.com/EcoBot791/membership) and unlock a most of content about us and receive more status", ephemeral=True)
-    # Adicione mais testes para outras opções do dropdown
 
 class TestCreateTicket(unittest.TestCase):
     async def test_create_ticket(self):
@@ -52,7 +51,7 @@ class TestCreateTicket(unittest.TestCase):
         interaction.channel = Mock(spec=discord.TextChannel)
 
         view = CreateTicket()
-        view.value = True  # Simula o valor configurado ao clicar no botão
+        view.value = True  # Simulate the configured value when clicking the button
 
         with patch("discord.Client.get_channel") as mock_get_channel:
             mock_channel = mock_get_channel.return_value
@@ -60,8 +59,6 @@ class TestCreateTicket(unittest.TestCase):
 
             with patch("discord.Webhook.send") as mock_send:
                 await view.confirm(interaction, None)
-
-                # Adicione asserts e verificações de chamadas mockadas
 
 class TestClient(unittest.TestCase):
     @patch("discord.Client.wait_until_ready")
@@ -107,8 +104,6 @@ class TestSlashCommands(unittest.TestCase):
 
         mock_edit.assert_called_once_with(archived=True)
         interaction.response.send_message.assert_called_once_with(f"The ticket was archived by {interaction.user.mention}, thank you for contacting us!")
-
-    # Adicione mais testes para outras funções slash commands
 
 if __name__ == "__main__":
     unittest.main()
