@@ -1,12 +1,10 @@
-import asyncio
 import unittest
 from unittest.mock import Mock, patch
 
 import discord
 from discord.ext import commands
 
-from main import (CreateTicket, Dropdown, DropdownView, _closeticket, client,
-                  setup, suggest, tree)
+from main import CreateTicket, Dropdown, _closeticket, client, suggest
 
 
 class TestDropdown(unittest.TestCase):
