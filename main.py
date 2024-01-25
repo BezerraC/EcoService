@@ -6,8 +6,8 @@ from discord import app_commands
 from discord.ext import commands
 from dotenv import load_dotenv
 
-id_do_servidor = 941388532734361640 # ID do seu servidor
-id_cargo_atendente = 1072284447522685042# ID do cargo de atendente
+id_do_servidor = 941388532734361640 # Guild ID
+id_cargo_atendente = 1072284447522685042 # Role ID 
 id_suggestion = 1072589019726229625
 
 class Dropdown(discord.ui.Select):
